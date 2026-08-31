@@ -4,8 +4,8 @@ To validate the DCT branch beyond its training distribution, we evaluated the tr
 # Results 
 
 === dct_branch — per condition (shipped threshold) ===
-              human acc  |AI acc  |balanced |  Δ bal |    AUC  P(AI)| human  P(AI)| AI |   n
-condition    |                                                                        
+| condition    |   human acc |   AI acc |   balanced acc |   Δ bal |    AUC |   P(AI) human |   P(AI) AI |   n |
+|:-------------|------------:|---------:|-----------:|--------:|-------:|--------------:|-----------:|----:|                                                                     
 clean        |    0.9867 |  0.0733 |   0.5300| 0.0000 | 0.5544   |    0.0176 |   0.0777 | 600
 jpeg_q90     |    0.9867 | 0.0733  |  0.5300 | 0.0000 | 0.5549   |   0.0177  |  0.0775  |600
 jpeg_q70      |   0.9867 | 0.0767  |  0.5317 | 0.0017 | 0.5627   |    0.0164 |   0.0805 | 600
@@ -22,3 +22,24 @@ noise_s0.10   |   1.0000 | 0.0500  | 0.5250  |-0.0050 | 0.7154   |    0.0016 |  
 jitter_20pct  |   0.9833 | 0.0700  |  0.5267 |-0.0033 |0.5446    |   0.0196  |  0.0778  |600
 crop_80pct    |   0.9567 | 0.0300  |  0.4933 |-0.0367 | 0.2949   |    0.0560 |   0.0312 |600
 
+## Summary
+
+Note: Δ bal = bal_acc(augment) - bal_acc(clean)
+
+| detector      |   clean balanced acc |   clean AUC |   mean balanced acc (degraded) |   worst balanced acc | worst condition   |   retention @ worst |   mean AUC (degraded) |   human acc cost |   AI acc cost |
+|:--------------|---------------------:|------------:|-------------------------------:|---------------------:|:------------------|--------------------:|----------------------:|-----------------:|--------------:|
+dct_branch      |           0.5300     |0.5544       |                 0.5174         |     0.4833   | resize_0.25x   |          0.9119    |           0.4535    |      0.0074  |     0.0179 | misses AI images |
+# charts
+
+
+<img width="1675" height="792" alt="Screenshot 2026-09-01 010137" src="https://github.com/user-attachments/assets/664efa29-8f6b-4f8d-8c64-b33da64044bf" />
+
+
+# summary analysis
+
+- overall, the model is is not able to distinguish AI images from real images very well
+- The iamges are not very affected by the augmentation, as the change in accuracy is less than 2% for each augmentation
+- the AUC and accuracy are around 52%
+
+
+- 
