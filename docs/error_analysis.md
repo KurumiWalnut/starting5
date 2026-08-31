@@ -21,3 +21,17 @@ Representative false positives / false negatives, noise_s0.10 condition.
 
 ## Insight
 **The false negatives are systematically stylized/illustrated content, not photorealistic near-misses.** The same three images — a costumed-animal parade photo and two Simpsons-style Halloween illustrations — appear as confident false negatives (P(AI)≈0.000) in *both* the clean and noise_s0.10 error grids. Missed even with zero corruption, this is a blind spot in what the model learned to recognize as "AI-generated," not a robustness gap.
+
+
+## Insight
+**The false negatives are systematically stylized/illustrated content, not photorealistic near-misses.** The same three images — a costumed-animal parade photo and two Simpsons-style Halloween illustrations — appear as confident false negatives (P(AI)≈0.000) in *both* the clean and noise_s0.10 error grids. Missed even with zero corruption, this is a blind spot in what the model learned to recognize as "AI-generated," not a robustness gap.
+
+
+# Brief Error Analysis Note for EffectiveNet
+
+<img width="957" height="542" alt="Screenshot 2026-09-01 044837" src="https://github.com/user-attachments/assets/ee4a850f-6d66-4d1b-a928-54d9803fc0c3" />
+
+## False Positives 
+All three of these are genuine photographs, but each has an unusual visual property that would specifically trigger your model's forensic scalars. Anything with genuinely repetitive or highly symmetric texture (engravings, patterned surfaces, decorative art, tiling) will read as suspicious to this specific detection mechanism, regardless of whether it's real or AI-generated. Hence they were identified as AI.
+## False Negatives
+All three of these share something the earlier eval diagnosis predicted: they're stylized illustrations, not photorealistic images. (a pencil-sketch-style cartoon character, a fashion/jewelry illustration, and an anime-style digital painting).The DCT model likely doesn't have a strong learned representation for illustration-style frequency statistics.
