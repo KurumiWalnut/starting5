@@ -35,13 +35,13 @@
 
 ## Charts
 
-![histogram_efficientnet](https://github.com/KurumiWalnut/starting5/blob/main/images/fig_distributions_all__efficientnet.png)
+<img width="1469" height="780" alt="image" src="https://github.com/user-attachments/assets/5a60fe4b-37e2-4db9-a644-2d74265da134" />
 15-panel score distribution grid — clean plus all 14 transforms, with FP/FN counts in each panel title.
 
-![error_clean](https://github.com/KurumiWalnut/starting5/blob/main/images/fig_error_analysis__efficientnet__clean.png)
+<img width="1044" height="790" alt="image" src="https://github.com/user-attachments/assets/03fa61f9-5433-48f1-a7c6-3d3f5777b5b8" />
 Representative false positives / false negatives, clean condition.
 
-![error_noise](https://github.com/KurumiWalnut/starting5/blob/main/images/fig_error_analysis__efficientnet__noise_s0_10.png)
+<img width="1046" height="787" alt="image" src="https://github.com/user-attachments/assets/4b66a4fc-08df-496d-af73-3602287314cf" />
 Representative false positives / false negatives, noise_s0.10 condition.
 
 ## Short Analysis
