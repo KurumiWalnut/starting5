@@ -1,5 +1,3 @@
-<img width="1296" height="625" alt="image" src="https://github.com/user-attachments/assets/2be81f27-4f81-4130-95f6-9fba8b04cc19" /># Robustness evaluation - CLIP-VIT
-
 **Trained on the Validation Dataset.** 300 authentic images (COCO val2017) and 300 AI-generated images (DALL·E Advanced), drawn with seed 0, at native resolution. Each image is evaluated under 15 conditions: clean plus the 14 transformations specified in the brief, at its exact parameters.
 
 ## Summary
