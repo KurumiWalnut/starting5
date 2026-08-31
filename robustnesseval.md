@@ -50,14 +50,17 @@ Note: Δ bal = bal_acc(augment) - bal_acc(clean)
 | crop_80pct   |      0.9533 |   0.8367 |     0.895  |  0.055  | 0.9625 |        0.0379 |     0.7168 | 600 |
 
 ## Charts
-![histogram_baseline]()
+![histogram_baseline](https://github.com/KurumiWalnut/starting5/blob/main/images/fig_distributions_all__clip_baseline.png)
 Histogram for augmentations on baseline model
 
-![histogram_robust]()
+
+![histogram_robust](https://github.com/KurumiWalnut/starting5/blob/main/images/fig_distributions_all__clip_robust-2.png)
 Histogram for augmentations on robust model
 
-![barchart_comparison]()
+
+![barchart_comparison](https://github.com/KurumiWalnut/starting5/blob/main/images/fig_human_vs_ai-2.png)
 Comparison of the bar charts for both models
+
 
 ## Short Analysis
 - Robust training wins on almost every metric, showing improved accuracy and AUC against the baseline. 
