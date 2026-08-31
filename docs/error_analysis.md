@@ -9,3 +9,14 @@ The three worst false positives are a silhouetted figure on a beach and two cloc
 
 ## False Negatives
 All 3 images with the largest false negative are images in an out-of-distribution style: Anime images. The detector's concept of "AI" is built almost entirely from photorealistic generator outputs. Anime / illustration / cartoon renders live in a different region of CLIP space entirely, and nothing in training taught the probe that this region is also "AI." The training set must span generator style, not just generator identity such as anime/illustration diffusion outputs, or meme-format AI images to reduce such false negatives.
+
+
+# Brief Error Analysis Note for EffectiveNet
+
+<img width="1044" height="790" alt="image" src="https://github.com/user-attachments/assets/03fa61f9-5433-48f1-a7c6-3d3f5777b5b8" />
+Representative false positives / false negatives, clean condition.
+
+<img width="1046" height="787" alt="image" src="https://github.com/user-attachments/assets/4b66a4fc-08df-496d-af73-3602287314cf" />
+Representative false positives / false negatives, noise_s0.10 condition.
+
+- **The false negatives are systematically stylized/illustrated content, not photorealistic near-misses.** The same three images — a costumed-animal parade photo and two Simpsons-style Halloween illustrations — appear as confident false negatives (P(AI)≈0.000) in *both* the clean and noise_s0.10 error grids. Missed even with zero corruption, this is a blind spot in what the model learned to recognize as "AI-generated," not a robustness gap.
