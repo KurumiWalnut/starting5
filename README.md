@@ -116,5 +116,5 @@ The main limitation in the project comes from where we source the data, which in
 
 ## 7. Team Contribution
 
-Zhenyuan: CLIP-VIT Code & Analysis, helped with writeup/documentation
-Amrit: DCT Code , helped with writeup/documentation
+Zhenyuan: CLIP-VIT Code & Analysis, helped with writeup/documentation \
+Amrit: DCT Code , helped with writeup/documentation \
