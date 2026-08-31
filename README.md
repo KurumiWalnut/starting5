@@ -120,4 +120,4 @@ Zhenyuan: CLIP-VIT Code & Analysis, helped with writeup/documentation \
 Amrit: DCT Code , helped with writeup/documentation \
 Hong Zheng: Fusion Hub Plan B (Future Implementation), helped with writeup/ documentation \
 Gareth: EffNet Code , helped with writeup/documentation \
-Edwin: Fusion Hub Plan A Code , helped with writeup/documentation \
+Edwin: Fusion Hub Plan A Code, Integration of all 3 Models into 1 Pipeline, helped with writeup/documentation
