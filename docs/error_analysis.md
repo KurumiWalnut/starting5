@@ -19,4 +19,5 @@ Representative false positives / false negatives, clean condition.
 <img width="1046" height="787" alt="image" src="https://github.com/user-attachments/assets/4b66a4fc-08df-496d-af73-3602287314cf" />
 Representative false positives / false negatives, noise_s0.10 condition.
 
-- **The false negatives are systematically stylized/illustrated content, not photorealistic near-misses.** The same three images — a costumed-animal parade photo and two Simpsons-style Halloween illustrations — appear as confident false negatives (P(AI)≈0.000) in *both* the clean and noise_s0.10 error grids. Missed even with zero corruption, this is a blind spot in what the model learned to recognize as "AI-generated," not a robustness gap.
+## Insight
+**The false negatives are systematically stylized/illustrated content, not photorealistic near-misses.** The same three images — a costumed-animal parade photo and two Simpsons-style Halloween illustrations — appear as confident false negatives (P(AI)≈0.000) in *both* the clean and noise_s0.10 error grids. Missed even with zero corruption, this is a blind spot in what the model learned to recognize as "AI-generated," not a robustness gap.
