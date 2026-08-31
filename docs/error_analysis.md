@@ -11,7 +11,7 @@ The three worst false positives are a silhouetted figure on a beach and two cloc
 All 3 images with the largest false negative are images in an out-of-distribution style: Anime images. The detector's concept of "AI" is built almost entirely from photorealistic generator outputs. Anime / illustration / cartoon renders live in a different region of CLIP space entirely, and nothing in training taught the probe that this region is also "AI." The training set must span generator style, not just generator identity such as anime/illustration diffusion outputs, or meme-format AI images to reduce such false negatives.
 
 
-# Brief Error Analysis Note for EffectiveNet
+# Brief Error Analysis Note for EfficientNet
 
 <img width="1044" height="790" alt="image" src="https://github.com/user-attachments/assets/03fa61f9-5433-48f1-a7c6-3d3f5777b5b8" />
 Representative false positives / false negatives, clean condition.
