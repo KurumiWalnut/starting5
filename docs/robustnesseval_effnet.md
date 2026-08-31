@@ -38,18 +38,10 @@
 <img width="1469" height="780" alt="image" src="https://github.com/user-attachments/assets/5a60fe4b-37e2-4db9-a644-2d74265da134" />
 15-panel score distribution grid — clean plus all 14 transforms, with FP/FN counts in each panel title.
 
-<img width="1044" height="790" alt="image" src="https://github.com/user-attachments/assets/03fa61f9-5433-48f1-a7c6-3d3f5777b5b8" />
-Representative false positives / false negatives, clean condition.
-
-<img width="1046" height="787" alt="image" src="https://github.com/user-attachments/assets/4b66a4fc-08df-496d-af73-3602287314cf" />
-Representative false positives / false negatives, noise_s0.10 condition.
-
 ## Short Analysis
 
 - **Noise is a genuine signal-loss failure, not just a calibration one.** AUC holds in the 0.77–0.82 range for every JPEG, blur, resize, jitter, and crop condition — the underlying separability barely moves, only the threshold's position relative to it does. noise_s0.10 is different: AUC collapses to 0.582, barely above chance. That is the actual evidence-destroying transform for this branch.
-- **The false negatives are systematically stylized/illustrated content, not photorealistic near-misses.** The same three images — a costumed-animal parade photo and two Simpsons-style Halloween illustrations — appear as confident false negatives (P(AI)≈0.000) in *both* the clean and noise_s0.10 error grids. Missed even with zero corruption, this is a blind spot in what the model learned to recognize as "AI-generated," not a robustness gap.
 - **Nearly all of the robustness cost lands on AI recall, not human accuracy.** Human-image accuracy is essentially unaffected by degradation (-0.0076, a tiny average improvement); AI-image accuracy costs -0.0455 on average. This detector's practical risk under real-world transforms is under-flagging fakes, not over-flagging authentic content.
-- **Generator labeling is a caveat worth a line.** "DALL·E Advanced," as curated within WildFake, may not represent DALL-E 3 output in general — WildFake's own curation choices for this subset are a separate factor from the generator's typical behavior.
 
 ## Method notes
 
