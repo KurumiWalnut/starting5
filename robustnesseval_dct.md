@@ -40,6 +40,3 @@ dct_branch      |           0.5300     |0.5544       |                 0.5174   
 - overall, the model is is not able to distinguish AI images from real images very well
 - The iamges are not very affected by the augmentation, as the change in accuracy is less than 2% for each augmentation
 - the AUC and accuracy are around 52%
-
-
-- 
