@@ -119,3 +119,4 @@ The main limitation in the project comes from where we source the data, which in
 Zhenyuan: CLIP-VIT Code & Analysis, helped with writeup/documentation \
 Amrit: DCT Code , helped with writeup/documentation \
 Hong Zheng: Fusion Hub Plan B (Future Implementation), helped with writeup/ documentation \
+Gareth: EffNet Code , helped with writeup/documentation \
