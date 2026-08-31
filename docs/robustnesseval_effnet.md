@@ -6,10 +6,6 @@
 |:------------|---:|---:|---:|---:|:---|---:|---:|---:|---:|:---|
 | efficientnet |  0.6933 | 0.813 | 0.6744 | 0.605 | noise_s0.10 | 0.8726 | 0.7774 | -0.0076 | 0.0455 | misses AI images |
 
-## The real story: this branch is already miscalibrated on clean data
-
-Before looking at any degradation numbers at all: on **clean, untransformed images**, this branch already misses more than half its fakes. Clean AI-image accuracy is 0.47 (160 of 300 fakes called authentic), against 0.92 human-image accuracy — a large, asymmetric gap that exists before a single transform is applied. Clean AUC of 0.813 shows the model has decent underlying ranking ability, so this isn't a model that fails to separate the classes at all; the shipped 0.500 threshold is simply set well above where this branch's fake-image scores actually cluster. Everything that follows about "robustness" should be read against this baseline: the branch's real-world reliability problem starts at clean data, degradation mostly adds to it rather than causing it outright.
-
 ## Per-condition results, by transform family
 
 | condition | human acc | AI acc | balanced acc | Δ bal | AUC |
