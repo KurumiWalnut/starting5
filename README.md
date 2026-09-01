@@ -38,31 +38,7 @@ In the course of the challenge, the main issues we identified are:
 
 A network fine-tuned end-to-end on one dataset tends to treat "real" as a catch-all for anything lacking its training generator's specific artefacts, so a frozen, generically pre-trained feature space (CLIP) is the branch that stays in the ensemble unconditionally, while the narrower branches (DCT, EfficientNet) are there to complement CLIP in what it might possibly fail to detect. The information collected is never from the same place, giving the pipeline a comprehensive and pluralistic approach to detecting AI-generated images.
 
-## 2. Repository structure
-
-```
-.
-├── notebooks/
-│   ├── train_clip_branch.ipynb          # CLIP ViT-L/14 + probe, robustness harness, bundle export
-│   ├── train_efficientnet_branch.ipynb  # EfficientNet-B0 fine-tuning (provisional — see status note)
-│   ├── final_pipeline.ipynb             # the 3-branch ensemble + fusion head (TopLayer / AIDetector)
-│   └── evaluate_robustness.ipynb        # standalone eval harness: any model -> table + figures + predictions.json
-├── docs/
-│   ├── pipeline.png                     # the diagram at the top of this README
-│   ├── robustness-evaluation-protocol.md      # design rationale for the augmentation + eval grid
-│   ├── robustness-summary-and-error-analysis.md  # CLIP branch results + error analysis
-│   ├── texture-crop-ood-writeup.md            # why TextureCrop degrades out-of-distribution
-│   └── ensemble-branch-decision.md            # branch-inclusion decision record + integration spec
-├── artifacts/
-│   └── detector_bundle.joblib           # saved CLIP probe(s) + config, produced by train_clip_branch.ipynb
-└── README.md
-```
-
-> File names above are the intended layout; map them to your actual notebook filenames if they differ.
-
-`notebooks/evaluate_robustness.ipynb` is the file that satisfies the challenge's evaluation deliverables: it takes any registered detector (a CLIP bundle or any `torch.nn.Module`), runs it over the validation set under all 15 conditions from the brief, and writes `predictions.json` alongside the robustness summary table and diagnostic figures.
-
-## 3. Setup and installation
+## 2. Setup and installation
 
 Development runs in Google Colab (T4 GPU); the notebooks assume that environment, but the underlying code is plain PyTorch / scikit-learn and runs anywhere with a GPU.
 
@@ -89,7 +65,7 @@ pip install opencv-python scipy albumentations pillow numpy \
 
 **Model checkpoints** the pipeline expects on Drive (`techjam/`): the CLIP bundle (`*.joblib`), `efficientnet_b0_detector-2.pt`, `dct_logreg.joblib`, and `dct_coeff_net.pth`. Paths are set at the top of each notebook.
 
-## 4. Steps to reproduce
+## 3. Steps to reproduce
 
 1. **Train the CLIP branch.** Open `notebooks/train_clip_branch.ipynb`, mount Drive, run all cells. This extracts CLIP features (cached to disk so a disconnect only costs the unfinished part), trains a `baseline` probe (clean views) and a `robust` probe (clean + augmented views), and exports `detector_bundle.joblib`. crop_mode can switch between center cropping(default) and texture cropping.
 2. **Train the EfficientNet branch.** Open `notebooks/train_effnet_branch.ipynb`, mmount Drive, run all cells. This fine-tunes an ImageNet-pretrained EfficientNet-B0 (backbone frozen except the last block plus the head conv/classifier) on the SID_Set subset, applying one randomly-chosen transform per image at 60% probability (JPEG compression, Gaussian blur, downscale, Gaussian noise, colour jitter, or an 80% centre crop), with the remaining 40% of images passed through clean. Checkpoints on validation AUC improvement, then exports three artifacts: a raw-probabilities CSV for the fusion pipeline (efficientnet_val_probs.csv), a self-contained portable checkpoint with embedded preprocessing metadata (efficientnet_b0_detector.pt), and a TorchScript trace that runs without timm or this notebook (efficientnet_b0_detector.ts).
@@ -98,12 +74,12 @@ pip install opencv-python scipy albumentations pillow numpy \
 4. **Run the evaluation harness.** **TODO**
 5. **Verify.** The harness's Part 8 runs self-checks automatically (clean-AUC label-convention sanity, alignment, reproducibility, completeness) and raises an assertion if anything looks wrong — a run printing "all checks passed" is the signal the numbers are trustworthy.
 
-## 5. Evaluation protocol
+## 4. Evaluation protocol
 
 - **Seperate training and test data** Training uses continuous parameter ranges that span and slightly exceed the brief's values so the model can get exposure to a wider variety of data, while the evaluation uses the problem statement's exact discrete settings. This prevents memorisation of the six numbers.
 - **Seperate Human and AI accuracy**, to better evaluate a model on the augmentations.
 
-## 6. Limitations and what we would improve given more time
+## 5. Limitations and what we would improve given more time
 
 ### Sources
 The main limitation in the project comes from where we source the data, which inadvertently contributed to a lot of the issues faced in the project. All of our project is trained under a small subset of the SID dataset, which can cause a few issues.
@@ -114,7 +90,7 @@ The main limitation in the project comes from where we source the data, which in
 
 3. The AI images in the training set are not representative of AI images in the wild now. ALL AI images generated in the SID set are generated by the same generator, which means the fingerprints are all localised to the one generator. This degrades performance on unseen generators, especially for ensemble agents like DCT that rely on frequency-domain statistics. In the future, we should incorporate more data from a variety of AI image generators spanning the different types (GAN, Stable Diffusion, other SOTA Agents) so the model has a better idea of different fingerprints.
 
-## 7. Team Contribution
+## 6. Team Contribution
 
 Zhenyuan: CLIP-VIT Code & Analysis, helped with writeup/documentation \
 Amrit: DCT Code , helped with writeup/documentation \
